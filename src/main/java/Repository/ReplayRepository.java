@@ -20,7 +20,7 @@ public class ReplayRepository extends GenericRepositoryImpl<Replay, Long>{
 
     public List<Replay> findAll() {
         var session = sessionFactory.openSession();
-        String hql = " FROM Entity.Replay a";
+        String hql = " FROM Entity.Replay r";
         var query = session.createQuery(hql, Replay.class);
         return query.getResultList();
     }

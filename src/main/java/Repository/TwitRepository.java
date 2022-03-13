@@ -20,7 +20,7 @@ public class TwitRepository extends GenericRepositoryImpl<Twit, Long>{
 
     public List<Twit> findAll() {
         var session = sessionFactory.openSession();
-        String hql = " FROM Entity.Twit a";
+        String hql = " FROM Entity.Twit t";
         var query = session.createQuery(hql, Twit.class);
         return query.getResultList();
     }

@@ -20,7 +20,7 @@ public class DisLikeRepository extends GenericRepositoryImpl<DisLike, Long> {
 
     public List<DisLike> findAll() {
         var session = sessionFactory.openSession();
-        String hql = " FROM Entity.DisLike a";
+        String hql = " FROM Entity.DisLike d";
         var query = session.createQuery(hql, DisLike.class);
         return query.getResultList();
     }

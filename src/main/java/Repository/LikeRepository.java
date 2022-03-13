@@ -19,7 +19,7 @@ public class LikeRepository extends GenericRepositoryImpl<Liking, Long>{
 
     public List<Liking> findAll() {
         var session = sessionFactory.openSession();
-        String hql = " FROM Entity.Liking a ";
+        String hql = " FROM Entity.Liking l ";
         var query = session.createQuery(hql, Liking.class);
         return query.getResultList();
     }
