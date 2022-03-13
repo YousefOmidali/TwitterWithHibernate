@@ -10,8 +10,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-public
-class Account {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
