@@ -1,16 +1,15 @@
 package main;
 
-import Entity.Account;
-import Repository.*;
+import Services.*;
 
 public class main {
     public static void main(String[] args) {
-        AccountRepository accountRepository = new AccountRepository();
-        CommentRepository commentRepository = new CommentRepository();
-        LikeRepository likeRepository = new LikeRepository();
-        DisLikeRepository disLikeRepository = new DisLikeRepository();
-        ReplayRepository replayRepository = new ReplayRepository();
-        TwitRepository twitRepository = new TwitRepository();
+        AccountService accountService = new AccountService();
+        CommentService commentService = new CommentService();
+        DisLikeService disLikeService = new DisLikeService();
+        ReplayService replayService = new ReplayService();
+        TwitService twitService = new TwitService();
+        LikeService likeService = new LikeService();
 
 
     }
