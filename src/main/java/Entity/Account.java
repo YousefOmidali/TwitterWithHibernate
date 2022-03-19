@@ -10,7 +10,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-//@ToString
+@ToString
 @Entity
 public class Account {
     @Id
@@ -21,13 +21,13 @@ public class Account {
     private String password;
     private String fullName;
 
-    @ManyToMany(fetch= FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "following")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "following")
     private Set<Account> followers = new HashSet<>();
 
     @JoinTable(name = "followers",
             joinColumns = {@JoinColumn(name = "account_id")},
             inverseJoinColumns = {@JoinColumn(name = "follower_id")})
-    @ManyToMany(fetch= FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Account> following = new HashSet<>();
 
     public Account(String userName, String password, String fullName) {
@@ -36,15 +36,4 @@ public class Account {
         this.fullName = fullName;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", followers=" + followers +
-                ", following=" + following +
-                '}';
-    }
 }
