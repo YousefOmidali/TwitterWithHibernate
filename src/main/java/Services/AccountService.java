@@ -4,6 +4,8 @@ import Entity.Account;
 import Entity.Comment;
 import Repository.AccountRepository;
 
+import java.util.List;
+
 
 public class AccountService {
     private AccountRepository accountRepository = new AccountRepository();
@@ -24,7 +26,15 @@ public class AccountService {
         return accountRepository.findById(id);
     }
 
-    public void findAll() {
-        accountRepository.findAll();
+    public Account findByUsername(String username) {
+        return accountRepository.findByUserName(username);
+    }
+
+    public List<Account> findAll() {
+        return accountRepository.findAll();
+    }
+
+    public Account login(String username, String password) {
+        return accountRepository.login(username, password);
     }
 }

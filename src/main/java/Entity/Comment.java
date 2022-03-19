@@ -21,5 +21,11 @@ public class Comment {
     private Twit twit;
 
     @ManyToOne
-    private Replay replay ;
+    private Account account;
+
+    public Comment(String comment, Twit twit, Account account) {
+        this.comment = comment;
+        this.twit = twit;
+        this.account = account;
+    }
 }

@@ -16,10 +16,19 @@ public class AccountRepository extends GenericRepositoryImpl<Account, Long>{
             return a;
         }
     }
+    public Account findByUserName(String username) {
+        try (var session = sessionFactory.openSession()) {
+            String hql = " FROM Entity.Account a " +
+                    " WHERE a.userName = :username ";
+            var query = session.createQuery(hql, Account.class);
+            query.setParameter("username", username);
+            return query.getSingleResult();
+        }
+    }
 
     public List<Account> findAll() {
         var session = sessionFactory.openSession();
-        String hql = " FROM Entity.Account a";
+        String hql = " FROM Entity.Account a ";
         var query = session.createQuery(hql, Account.class);
         return query.getResultList();
     }

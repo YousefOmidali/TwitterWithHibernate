@@ -3,6 +3,8 @@ package Services;
 import Entity.Replay;
 import Repository.ReplayRepository;
 
+import java.util.List;
+
 public class ReplayService {
     private ReplayRepository replayRepository = new ReplayRepository();
 
@@ -22,7 +24,7 @@ public class ReplayService {
         return replayRepository.findById(id);
     }
 
-    public void findAll() {
-        replayRepository.findAll();
+    public List<Replay> findAll(Long twit_id) {
+        return replayRepository.findAll(twit_id);
     }
 }

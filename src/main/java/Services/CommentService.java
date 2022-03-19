@@ -1,9 +1,9 @@
 package Services;
 
 import Entity.Comment;
-import Entity.DisLike;
 import Repository.CommentRepository;
-import Repository.DisLikeRepository;
+
+import java.util.List;
 
 public class CommentService {
     private CommentRepository commentRepository = new CommentRepository();
@@ -24,7 +24,7 @@ public class CommentService {
         return commentRepository.findById(id);
     }
 
-    public void findAll() {
-        commentRepository.findAll();
+    public List<Comment> findAll(Long twit_id) {
+        return commentRepository.findAll(twit_id);
     }
 }

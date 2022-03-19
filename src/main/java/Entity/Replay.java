@@ -18,4 +18,7 @@ public class Replay {
 
     @ManyToOne
     private Comment comment;
+
+    @ManyToOne
+    private Account account;
 }

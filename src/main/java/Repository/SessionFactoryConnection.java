@@ -18,8 +18,6 @@ public class SessionFactoryConnection {
             INSTANCE = new MetadataSources(registry)
                     .addAnnotatedClass(Account.class)
                     .addAnnotatedClass(Comment.class)
-                    .addAnnotatedClass(Liking.class)
-                    .addAnnotatedClass(DisLike.class)
                     .addAnnotatedClass(Replay.class)
                     .addAnnotatedClass(Twit.class)
                     .buildMetadata()

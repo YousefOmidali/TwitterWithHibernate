@@ -3,6 +3,8 @@ package Services;
 import Entity.Twit;
 import Repository.TwitRepository;
 
+import java.util.List;
+
 public class TwitService {
     private TwitRepository twitRepository = new TwitRepository();
 
@@ -22,7 +24,7 @@ public class TwitService {
         return twitRepository.findById(id);
     }
 
-    public void findAll() {
-        twitRepository.findAll();
+    public List<Twit> findAll() {
+        return twitRepository.findAll();
     }
 }

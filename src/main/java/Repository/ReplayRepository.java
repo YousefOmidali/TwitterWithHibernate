@@ -18,10 +18,11 @@ public class ReplayRepository extends GenericRepositoryImpl<Replay, Long>{
         }
     }
 
-    public List<Replay> findAll() {
+    public List<Replay> findAll(Long commentId) {
         var session = sessionFactory.openSession();
-        String hql = " FROM Entity.Replay r";
+        String hql = " FROM Entity.Replay r where comment.id = :comment_id";
         var query = session.createQuery(hql, Replay.class);
+        query.setParameter("comment_id", commentId);
         return query.getResultList();
     }
 }
