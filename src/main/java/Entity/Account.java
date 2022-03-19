@@ -26,7 +26,7 @@ public class Account {
 
     @JoinTable(name = "followers",
             joinColumns = {@JoinColumn(name = "account_id")},
-            inverseJoinColumns = {@JoinColumn(name = "follower_id")})
+            inverseJoinColumns = {@JoinColumn(name = "followeing_id")})
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Account> following = new HashSet<>();
 
@@ -36,4 +36,15 @@ public class Account {
         this.fullName = fullName;
     }
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+//                ", followers=" + followers +
+//                ", following=" + following +
+                '}';
+    }
 }

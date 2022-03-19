@@ -3,10 +3,7 @@ package main;
 import Entity.*;
 import Services.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -36,7 +33,6 @@ public class Main {
         String fullName;
         Boolean loop = true;
 
-
         System.out.println("1.Login \n2.Signup ");
         role = scanner.nextInt();
         if (role == 1) {
@@ -54,7 +50,7 @@ public class Main {
                             "\n13.Like a twit \n14.disLike a twit \n15.see who are your following " +
                             "\n16.search an account by username \n17.follow an account " +
                             "\n18.see your followers \n19.Unfollow an account \n20.replay a comment " +
-                            "\n21.see all replay of a comment \n22.Exit" );
+                            "\n21.see all replay of a comment \n22.Exit");
                     roleAfterLogin = scanner.nextInt();
                     switch (roleAfterLogin) {
                         case 1:
@@ -156,7 +152,11 @@ public class Main {
                         case 15:
                             System.out.println("enter your acc id: ");
                             account = accountService.findById(scanner.nextLong());
-                            account.getFollowing().forEach(System.out::println);
+                            System.out.println("you are following: " + account.getFollowing().size() + " account");
+                            for (Account a : account.getFollowing()) {
+                                a.setPassword("******");
+                                System.out.println(a);
+                            }
                             break;
                         case 16:
                             scanner.nextLine();
@@ -173,7 +173,6 @@ public class Main {
                             accountService.update(account);
                             account2.getFollowers().add(account);
                             accountService.update(account2);
-                            System.out.println("you started following: "+ account2);
                             break;
                         case 18:
                             System.out.println("enter your acc id: ");
@@ -207,7 +206,7 @@ public class Main {
                             replayService.findAll(comment.getId()).forEach(System.out::println);
                             break;
                         case 22:
-                            loop =false;
+                            loop = false;
                             break;
 
                     }
