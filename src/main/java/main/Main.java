@@ -54,7 +54,11 @@ public class Main {
                     roleAfterLogin = scanner.nextInt();
                     switch (roleAfterLogin) {
                         case 1:
-                            System.out.println(account);
+                            System.out.println("*********************************");
+                            System.out.println("your id: "+account.getId());
+                            System.out.println("your username: "+account.getUserName());
+                            System.out.println("your fullName: "+account.getFullName());
+                            System.out.println("*********************************");
                             break;
                         case 2:
                             scanner.nextLine();
@@ -152,11 +156,15 @@ public class Main {
                         case 15:
                             System.out.println("enter your acc id: ");
                             account = accountService.findById(scanner.nextLong());
-                            System.out.println("you are following: " + account.getFollowing().size() + " account");
-                            for (Account a : account.getFollowing()) {
-                                a.setPassword("******");
-                                System.out.println(a);
-                            }
+                            System.out.println("you are following: " + account.getFollowing().size() +
+                                    " account: ");
+                            account.getFollowing().stream().map(Account::getUserName)
+                                    .forEach(System.out::println);
+
+//                            for (Account a : account.getFollowing()) {
+//                                a.setPassword("******");
+//                                System.out.println(a);
+//                            }
                             break;
                         case 16:
                             scanner.nextLine();
@@ -177,7 +185,11 @@ public class Main {
                         case 18:
                             System.out.println("enter your acc id: ");
                             account = accountService.findById(scanner.nextLong());
-                            account.getFollowers().forEach(System.out::println);
+                            System.out.println("you are have "+account.getFollowers().size()+" followers: ");
+                            account.getFollowers()
+                                    .stream()
+                                    .map(Account::getUserName)
+                                    .forEach(System.out::println);
                             break;
                         case 19:
                             System.out.println("enter your acc id: ");

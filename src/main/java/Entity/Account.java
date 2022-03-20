@@ -36,15 +36,15 @@ public class Account {
         this.fullName = fullName;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", fullName='" + fullName + '\'' +
+//    @Override
+//    public String toString() {
+//        return "Account{" +
+//                "id=" + id +
+//                ", userName='" + userName + '\'' +
+//                ", password='" + password + '\'' +
+//                ", fullName='" + fullName + '\'' +
 //                ", followers=" + followers +
 //                ", following=" + following +
-                '}';
-    }
+//                '}';
+//    }
 }
