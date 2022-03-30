@@ -18,23 +18,27 @@ public class Main {
         List<Comment> commentList;
         Set<Account> followers;
         Set<Account> following;
-        Long longId;
+        Long longId = null;
         Integer intId;
         String twitTxt;
         String commentTxt;
-        Comment comment;
-        Twit twit;
+        Comment comment = null;
+        Twit twit = null;
         Replay replay;
         String replayTxt;
-        Integer role;
-        Integer roleAfterLogin;
+        Integer role = 1;
+        Integer roleAfterLogin = 0;
         String userName;
         String password;
         String fullName;
         Boolean loop = true;
 
         System.out.println("1.Login \n2.Signup ");
-        role = scanner.nextInt();
+        try {
+            role = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("wrong input");
+        }
         if (role == 1) {
             scanner.nextLine();
             System.out.println("enter your username: ");
@@ -51,13 +55,17 @@ public class Main {
                             "\n16.search an account by username \n17.follow an account " +
                             "\n18.see your followers \n19.Unfollow an account \n20.replay a comment " +
                             "\n21.see all replay of a comment \n22.Exit");
-                    roleAfterLogin = scanner.nextInt();
+                    try {
+                        roleAfterLogin = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("wrong input");
+                    }
                     switch (roleAfterLogin) {
                         case 1:
                             System.out.println("*********************************");
-                            System.out.println("your id: "+account.getId());
-                            System.out.println("your username: "+account.getUserName());
-                            System.out.println("your fullName: "+account.getFullName());
+                            System.out.println("your id: " + account.getId());
+                            System.out.println("your username: " + account.getUserName());
+                            System.out.println("your fullName: " + account.getFullName());
                             System.out.println("*********************************");
                             break;
                         case 2:
@@ -85,20 +93,40 @@ public class Main {
                             break;
                         case 5:
                             System.out.println("enter twit id: ");
-                            longId = scanner.nextLong();
+                            try {
+                                longId = scanner.nextLong();
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             twit = twitService.findById(longId);
-                            twit.getAccount().setPassword("Its personal! SORRY");
-                            System.out.println(twit);
+//                            twit.getAccount().setPassword("Its personal! SORRY");
+                            System.out.println("*****************************************************************************");
+                            System.out.println("Twit id: " + twit.getId() + ", twit text: " + twit.getTwit() +
+                                    ", Likes: " + twit.getLikes() + ", disLikes: " + twit.getDisLike() +
+                                    "\nacc id: " + twit.getAccount().getId()+
+                                            ", acc username:" + twit.getAccount().getUserName()+
+                                    "acc fullName: "+twit.getAccount().getFullName());
+                            System.out.println("*****************************************************************************");
+
                             break;
                         case 6:
                             System.out.println("enter twit id: ");
-                            longId = scanner.nextLong();
+                            try {
+                                longId = scanner.nextLong();
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             twitService.deleteById(longId);
                             System.out.println("deleted! ");
                             break;
                         case 7:
                             System.out.println("enter twit id: ");
-                            twit = twitService.findById(scanner.nextLong());
+                            try {
+                                twit = twitService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
+                            scanner.nextLine();
                             System.out.println("enter new twit txt: ");
                             twit.setTwit(scanner.nextLine());
                             break;
@@ -108,9 +136,17 @@ public class Main {
                             break;
                         case 9:
                             System.out.println("enter your id: ");
-                            account = accountService.findById(scanner.nextLong());
+                            try {
+                                account = accountService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             System.out.println("enter twit id: ");
-                            twit = twitService.findById(scanner.nextLong());
+                            try {
+                                twit = twitService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             scanner.nextLine();
                             System.out.println("enter comment txt: ");
                             commentTxt = scanner.nextLine();
@@ -119,13 +155,21 @@ public class Main {
                             break;
                         case 10:
                             System.out.println("enter twit id: ");
-                            longId = scanner.nextLong();
+                            try {
+                                longId = scanner.nextLong();
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             commentList = commentService.findAll(longId);
                             commentList.forEach(System.out::println);
                             break;
                         case 11:
                             System.out.println("enter comment id: ");
-                            longId = scanner.nextLong();
+                            try {
+                                longId = scanner.nextLong();
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             comment = commentService.findById(longId);
                             scanner.nextLine();
                             System.out.println("enter your new text: ");
@@ -135,11 +179,19 @@ public class Main {
                             break;
                         case 12:
                             System.out.println("enter comment id: ");
-                            commentService.deleteById(scanner.nextLong());
+                            try {
+                                commentService.deleteById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             break;
                         case 13:
                             System.out.println("enter twit id: ");
-                            twit = twitService.findById(scanner.nextLong());
+                            try {
+                                twit = twitService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             Long likes = twit.getLikes();
                             likes += 1;
                             twit.setLikes(likes);
@@ -147,7 +199,11 @@ public class Main {
                             break;
                         case 14:
                             System.out.println("enter twit id: ");
-                            twit = twitService.findById(scanner.nextLong());
+                            try {
+                                twit = twitService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             Long numberOfDisLikes = twit.getDisLike();
                             numberOfDisLikes += 1;
                             twit.setDisLike(numberOfDisLikes);
@@ -155,7 +211,11 @@ public class Main {
                             break;
                         case 15:
                             System.out.println("enter your acc id: ");
-                            account = accountService.findById(scanner.nextLong());
+                            try {
+                                account = accountService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             System.out.println("you are following: " + account.getFollowing().size() +
                                     " account: ");
                             account.getFollowing().stream().map(Account::getUserName)
@@ -170,11 +230,17 @@ public class Main {
                             scanner.nextLine();
                             System.out.println("enter username : ");
                             account = accountService.findByUsername(scanner.nextLine());
-                            System.out.println(account);
+                            System.out.println("id: "+account.getId());
+                            System.out.println("username :"+account.getUserName());
+                            System.out.println("fullName: "+account.getFullName());
                             break;
                         case 17:
                             System.out.println("enter your acc id: ");
-                            account = accountService.findById(scanner.nextLong());
+                            try {
+                                account = accountService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             System.out.println("enter id of acc you want follow: ");
                             account2 = accountService.findById(scanner.nextLong());
                             account.getFollowing().add(account2);
@@ -184,8 +250,12 @@ public class Main {
                             break;
                         case 18:
                             System.out.println("enter your acc id: ");
-                            account = accountService.findById(scanner.nextLong());
-                            System.out.println("you are have "+account.getFollowers().size()+" followers: ");
+                            try {
+                                account = accountService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
+                            System.out.println("you are have " + account.getFollowers().size() + " followers: ");
                             account.getFollowers()
                                     .stream()
                                     .map(Account::getUserName)
@@ -193,7 +263,11 @@ public class Main {
                             break;
                         case 19:
                             System.out.println("enter your acc id: ");
-                            account = accountService.findById(scanner.nextLong());
+                            try {
+                                account = accountService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             System.out.println("enter id of acc you want UnFollow: ");
                             account2 = accountService.findById(scanner.nextLong());
                             account.getFollowing().remove(account2);
@@ -203,9 +277,17 @@ public class Main {
                             break;
                         case 20:
                             System.out.println("enter your acc id: ");
-                            account = accountService.findById(scanner.nextLong());
+                            try {
+                                account = accountService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             System.out.println("enter comment id: ");
-                            comment = commentService.findById(scanner.nextLong());
+                            try {
+                                comment = commentService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             scanner.nextLine();
                             System.out.println("Enter replay text: ");
                             replayTxt = scanner.nextLine();
@@ -214,7 +296,11 @@ public class Main {
                             break;
                         case 21:
                             System.out.println("enter comment id: ");
-                            comment = commentService.findById(scanner.nextLong());
+                            try {
+                                comment = commentService.findById(scanner.nextLong());
+                            } catch (InputMismatchException e) {
+                                System.out.println("wrong input");
+                            }
                             replayService.findAll(comment.getId()).forEach(System.out::println);
                             break;
                         case 22:

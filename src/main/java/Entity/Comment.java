@@ -16,7 +16,6 @@ public class Comment {
     private Long id;
     private String comment;
 
-
     @ManyToOne
     private Twit twit;
 

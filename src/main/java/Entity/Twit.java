@@ -22,10 +22,10 @@ public class Twit {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Account account;
 
-    public Twit(String twit, Long like, Long disLike, Account account) {
-        this.twit = twit;
-        this.likes = like;
-        this.disLike = disLike;
-        this.account = account;
-    }
+//    public Twit(String twit, Long like, Long disLike, Account account) {
+//        this.twit = twit;
+//        this.likes = like;
+//        this.disLike = disLike;
+//        this.account = account;
+//    }
 }
