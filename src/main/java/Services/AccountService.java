@@ -15,7 +15,7 @@ public class AccountService {
     }
 
     public void deleteById(Long id) {
-        accountRepository.findById(id);
+        accountRepository.deleteById(id);
     }
 
     public void update(Account account) {
